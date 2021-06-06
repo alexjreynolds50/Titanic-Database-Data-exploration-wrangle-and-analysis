@@ -162,7 +162,7 @@ sns.countplot(x='Sex', data=titanic_df)
 ```
 
 
-![png](images/output_7_1.png)
+![png](images/_7_1.png)
     
 
 ```python
@@ -170,7 +170,7 @@ sns.countplot(x='Sex',data=titanic_df,hue='Pclass')
 ```
 
 
-![png](output_8_1.png)
+![png](images/output_8_1.png)
     
 
 ```python
@@ -180,7 +180,7 @@ sns.countplot(x='Pclass',data=titanic_df,hue='Sex')
 
 
 
-![png](output_9_1.png)
+![png](images/output_9_1.png)
     
 
 ```python
@@ -1041,7 +1041,7 @@ sns.countplot(x='Pclass',data=titanic_df,hue='person')
 
 
 
-![png](output_13_1.png)
+![png](images/output_13_1.png)
 
 
 
@@ -1053,7 +1053,7 @@ titanic_df['Age'].hist(bins=70)
 
 
 ​    
-![png](output_14_1.png)
+![png](images/output_14_1.png)
 ​    
 
 
@@ -1090,7 +1090,7 @@ fig.add_legend()
 
 
 
-![png](output_17_1.png)
+![png](images/output_17_1.png)
     
 
 ```python
@@ -1106,7 +1106,7 @@ fig.add_legend()
 
 
 
-![png](output_18_1.png)
+![png](images/output_18_1.png)
     
 
 ```python
@@ -1123,7 +1123,7 @@ fig.add_legend()
 
 
 ​    
-![png](output_19_1.png)
+![png](images/output_19_1.png)
 ​    
 
 
@@ -1271,7 +1271,7 @@ sns.countplot('Cabin',data=cabin_df,palette="winter_d",order=['A','B','C','D','E
 ```
 
 
-![png](output_24_2.png)
+![png](images/output_24_2.png)
     
 
 ```python
@@ -1284,7 +1284,7 @@ sns.countplot('Cabin',data=cabin_df,palette="summer",order=['A','B','C','D','E',
 ```
 
 
-![png](output_26_2.png)
+![png](images/output_26_2.png)
 
 ```python
 titanic_df.head()
@@ -1405,7 +1405,7 @@ sns.countplot('Embarked', data=titanic_df, hue='Pclass', order=['C','Q','S'])
 
 
 ​    
-![png](output_29_2.png)
+![png](images/output_29_2.png)
 ​    
 
 
@@ -1668,7 +1668,7 @@ sns.countplot('Alone', data=titanic_df,palette='Blues')
 
 
 ​    
-![png](output_36_2.png)
+![png](images/output_36_2.png)
 ​    
 
 
@@ -1704,7 +1704,7 @@ sns.countplot('Survivor',data=titanic_df,palette='Set1')
 ```
 
 
-![png](output_40_2.png)
+![png](images/output_40_2.png)
     
 
 ```python
@@ -1715,7 +1715,7 @@ sns.factorplot('Pclass','Survived',hue='person',data=titanic_df
 
 
 ​    
-![png](output_41_2.png)
+![png](images/output_41_2.png)
 ​    
 
 
@@ -1725,7 +1725,7 @@ sns.lmplot('Age','Survived',data=titanic_df)
 ```
 
 
-![png](output_42_2.png)
+![png](images/output_42_2.png)
     
 
 ```python
@@ -1735,7 +1735,7 @@ sns.lmplot('Age','Survived',hue='Pclass',data=titanic_df, palette='winter')
 
 
 
-![png](output_43_2.png)
+![png](images/output_43_2.png)
     
 
 ```python
@@ -1748,7 +1748,7 @@ sns.lmplot('Age','Survived',hue = 'Pclass', data=titanic_df, palette='winter',x_
 ```
 
 
-![png](output_45_1.png)
+![png](images/output_45_1.png)
     
 
 ```python
@@ -1757,7 +1757,7 @@ sns.lmplot('Age','Survived',hue='Sex',data=titanic_df,palette='winter',x_bins=ge
 
 
 ​    
-![png](output_46_1.png)
+![png](images/output_46_1.png)
 ​    
 
 
@@ -2174,7 +2174,7 @@ sns.factorplot('Deck','Survived',data=cabin_df,order=['A','B','C','D','E','F','G
 ```
 
 
-![png](output_54_2.png)
+![png](images/output_54_2.png)
     
 
 ```python
@@ -2182,7 +2182,7 @@ sns.factorplot('Deck','Survived',hue = 'Sex',data=cabin_df,order=['A','B','C','D
 ```
 
 
-![png](output_55_2.png)
+![png](images/output_55_2.png)
     
 
 ```python
@@ -2193,7 +2193,7 @@ sns.factorplot('Deck','Survived',hue = 'Pclass',data=cabin_df,order=['A','B','C'
 
 
 ​    
-![png](output_56_2.png)
+![png](images/output_56_2.png)
 ​    
 
 
@@ -2205,7 +2205,7 @@ sns.factorplot('Alone','Survived',data=titanic_df)
 ```
 
 
-![png](output_58_2.png)
+![png](images/output_58_2.png)
     
 
 ```python
@@ -2213,7 +2213,7 @@ sns.factorplot('Alone','Survived',hue = 'Pclass',data=titanic_df)
 ```
 
 
-![png](output_59_2.png)
+![png](images/output_59_2.png)
     
 
 ```python
@@ -2222,7 +2222,7 @@ sns.factorplot('Alone','Survived',hue = 'Sex',data=titanic_df)
 
 
 ​    
-![png](output_60_2.png)
+![png](images/output_60_2.png)
 ​    
 
 
