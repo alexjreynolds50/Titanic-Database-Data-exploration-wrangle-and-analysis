@@ -162,7 +162,7 @@ sns.countplot(x='Sex', data=titanic_df)
 ```
 
 
-![png](images/_7_1.png)
+![png](images/output_7_1.png)
     
 
 ```python
