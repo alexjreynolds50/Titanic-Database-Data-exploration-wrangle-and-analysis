@@ -5,11 +5,13 @@ from pandas import Series, DataFrame
 
 
 ```python
+#Import dataset
 titanic_df = pd.read_csv('/Users/alexreynolds/Documents/Data Projects/Titanic Project/train.csv')
 ```
 
 
 ```python
+#Preview the Data
 titanic_df.head()
 ```
 
@@ -111,6 +113,7 @@ titanic_df.head()
 </table>
 
 ```python
+#General info on dataset
 titanic_df.info()
 ```
 
@@ -158,32 +161,40 @@ import seaborn as sns
 
 
 ```python
+#Check gender
 sns.countplot(x='Sex', data=titanic_df)
 ```
 
 
-![png](images/output_7_1.png)
+![png](output_7_1.png)
     
 
 ```python
+#Seperate gender by classes
 sns.countplot(x='Sex',data=titanic_df,hue='Pclass')
 ```
 
 
-![png](images/output_8_1.png)
+![png](output_8_1.png)
     
 
+
+Quite a few more males in the 3rd class than females, an interesting find. However, it might be useful to know the split between males,females,and children.
+
+
 ```python
+#Visualize gender in each class
 sns.countplot(x='Pclass',data=titanic_df,hue='Sex')
 ```
 
 
-
-
-![png](images/output_9_1.png)
+![png](output_10_1.png)
     
 
 ```python
+#Find number of children on board
+#Define anyone under 16 as a child
+
 def male_female_child(passenger):
     age,sex = passenger
     
@@ -195,15 +206,14 @@ def male_female_child(passenger):
 
 
 ```python
+#New column called 'person' to list male, female, or child 
 titanic_df['person'] = titanic_df[['Age','Sex']].apply(male_female_child,axis=1)
 ```
 
 
 ```python
-titanic_df.head(50)
+titanic_df.head(10)
 ```
-
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -222,6 +232,9 @@ titanic_df.head(50)
       <th>Cabin</th>
       <th>Embarked</th>
       <th>person</th>
+      <th>Alone</th>
+      <th>Survior</th>
+      <th>Survivor</th>
     </tr>
   </thead>
   <tbody>
@@ -240,6 +253,9 @@ titanic_df.head(50)
       <td>NaN</td>
       <td>S</td>
       <td>male</td>
+      <td>With Family</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>1</th>
@@ -256,6 +272,9 @@ titanic_df.head(50)
       <td>C85</td>
       <td>C</td>
       <td>female</td>
+      <td>With Family</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>2</th>
@@ -272,6 +291,9 @@ titanic_df.head(50)
       <td>NaN</td>
       <td>S</td>
       <td>female</td>
+      <td>Alone</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>3</th>
@@ -288,6 +310,9 @@ titanic_df.head(50)
       <td>C123</td>
       <td>S</td>
       <td>female</td>
+      <td>With Family</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>4</th>
@@ -304,6 +329,9 @@ titanic_df.head(50)
       <td>NaN</td>
       <td>S</td>
       <td>male</td>
+      <td>Alone</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>5</th>
@@ -320,6 +348,9 @@ titanic_df.head(50)
       <td>NaN</td>
       <td>Q</td>
       <td>male</td>
+      <td>Alone</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>6</th>
@@ -336,6 +367,9 @@ titanic_df.head(50)
       <td>E46</td>
       <td>S</td>
       <td>male</td>
+      <td>Alone</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>7</th>
@@ -352,6 +386,9 @@ titanic_df.head(50)
       <td>NaN</td>
       <td>S</td>
       <td>child</td>
+      <td>With Family</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>8</th>
@@ -368,6 +405,9 @@ titanic_df.head(50)
       <td>NaN</td>
       <td>S</td>
       <td>female</td>
+      <td>With Family</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>9</th>
@@ -384,681 +424,40 @@ titanic_df.head(50)
       <td>NaN</td>
       <td>C</td>
       <td>child</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>11</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Sandstrom, Miss. Marguerite Rut</td>
-      <td>female</td>
-      <td>4.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>PP 9549</td>
-      <td>16.7000</td>
-      <td>G6</td>
-      <td>S</td>
-      <td>child</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>12</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Bonnell, Miss. Elizabeth</td>
-      <td>female</td>
-      <td>58.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>113783</td>
-      <td>26.5500</td>
-      <td>C103</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>13</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Saundercock, Mr. William Henry</td>
-      <td>male</td>
-      <td>20.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>A/5. 2151</td>
-      <td>8.0500</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>14</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Andersson, Mr. Anders Johan</td>
-      <td>male</td>
-      <td>39.0</td>
-      <td>1</td>
-      <td>5</td>
-      <td>347082</td>
-      <td>31.2750</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>15</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Vestrom, Miss. Hulda Amanda Adolfina</td>
-      <td>female</td>
-      <td>14.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>350406</td>
-      <td>7.8542</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>child</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>16</td>
-      <td>1</td>
-      <td>2</td>
-      <td>Hewlett, Mrs. (Mary D Kingcome)</td>
-      <td>female</td>
-      <td>55.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>248706</td>
-      <td>16.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>17</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Rice, Master. Eugene</td>
-      <td>male</td>
-      <td>2.0</td>
-      <td>4</td>
-      <td>1</td>
-      <td>382652</td>
-      <td>29.1250</td>
-      <td>NaN</td>
-      <td>Q</td>
-      <td>child</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>18</td>
-      <td>1</td>
-      <td>2</td>
-      <td>Williams, Mr. Charles Eugene</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>244373</td>
-      <td>13.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>19</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Vander Planke, Mrs. Julius (Emelia Maria Vande...</td>
-      <td>female</td>
-      <td>31.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>345763</td>
-      <td>18.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>20</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Masselmani, Mrs. Fatima</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2649</td>
-      <td>7.2250</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>21</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Fynney, Mr. Joseph J</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>239865</td>
-      <td>26.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>22</td>
-      <td>1</td>
-      <td>2</td>
-      <td>Beesley, Mr. Lawrence</td>
-      <td>male</td>
-      <td>34.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>248698</td>
-      <td>13.0000</td>
-      <td>D56</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>23</td>
-      <td>1</td>
-      <td>3</td>
-      <td>McGowan, Miss. Anna "Annie"</td>
-      <td>female</td>
-      <td>15.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>330923</td>
-      <td>8.0292</td>
-      <td>NaN</td>
-      <td>Q</td>
-      <td>child</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>24</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Sloper, Mr. William Thompson</td>
-      <td>male</td>
-      <td>28.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>113788</td>
-      <td>35.5000</td>
-      <td>A6</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>25</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Palsson, Miss. Torborg Danira</td>
-      <td>female</td>
-      <td>8.0</td>
-      <td>3</td>
-      <td>1</td>
-      <td>349909</td>
-      <td>21.0750</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>child</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>26</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Asplund, Mrs. Carl Oscar (Selma Augusta Emilia...</td>
-      <td>female</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>5</td>
-      <td>347077</td>
-      <td>31.3875</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>27</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Emir, Mr. Farred Chehab</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2631</td>
-      <td>7.2250</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>28</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Fortune, Mr. Charles Alexander</td>
-      <td>male</td>
-      <td>19.0</td>
-      <td>3</td>
-      <td>2</td>
-      <td>19950</td>
-      <td>263.0000</td>
-      <td>C23 C25 C27</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>29</td>
-      <td>1</td>
-      <td>3</td>
-      <td>O'Dwyer, Miss. Ellen "Nellie"</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>330959</td>
-      <td>7.8792</td>
-      <td>NaN</td>
-      <td>Q</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>30</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Todoroff, Mr. Lalio</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>349216</td>
-      <td>7.8958</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>31</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Uruchurtu, Don. Manuel E</td>
-      <td>male</td>
-      <td>40.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>PC 17601</td>
-      <td>27.7208</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>32</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Spencer, Mrs. William Augustus (Marie Eugenie)</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>1</td>
-      <td>0</td>
-      <td>PC 17569</td>
-      <td>146.5208</td>
-      <td>B78</td>
-      <td>C</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>33</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Glynn, Miss. Mary Agatha</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>335677</td>
-      <td>7.7500</td>
-      <td>NaN</td>
-      <td>Q</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>34</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Wheadon, Mr. Edward H</td>
-      <td>male</td>
-      <td>66.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>C.A. 24579</td>
-      <td>10.5000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>35</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Meyer, Mr. Edgar Joseph</td>
-      <td>male</td>
-      <td>28.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>PC 17604</td>
-      <td>82.1708</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>36</td>
-      <td>0</td>
-      <td>1</td>
-      <td>Holverson, Mr. Alexander Oskar</td>
-      <td>male</td>
-      <td>42.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>113789</td>
-      <td>52.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>37</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Mamee, Mr. Hanna</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2677</td>
-      <td>7.2292</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>38</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Cann, Mr. Ernest Charles</td>
-      <td>male</td>
-      <td>21.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>A./5. 2152</td>
-      <td>8.0500</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>39</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Vander Planke, Miss. Augusta Maria</td>
-      <td>female</td>
-      <td>18.0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>345764</td>
-      <td>18.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>40</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Nicola-Yarred, Miss. Jamila</td>
-      <td>female</td>
-      <td>14.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>2651</td>
-      <td>11.2417</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>child</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>41</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Ahlin, Mrs. Johan (Johanna Persdotter Larsson)</td>
-      <td>female</td>
-      <td>40.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>7546</td>
-      <td>9.4750</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>42</td>
-      <td>0</td>
-      <td>2</td>
-      <td>Turpin, Mrs. William John Robert (Dorothy Ann ...</td>
-      <td>female</td>
-      <td>27.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>11668</td>
-      <td>21.0000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>43</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Kraeff, Mr. Theodor</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>349253</td>
-      <td>7.8958</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>44</td>
-      <td>1</td>
-      <td>2</td>
-      <td>Laroche, Miss. Simonne Marie Anne Andree</td>
-      <td>female</td>
-      <td>3.0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>SC/Paris 2123</td>
-      <td>41.5792</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>child</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>45</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Devaney, Miss. Margaret Delia</td>
-      <td>female</td>
-      <td>19.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>330958</td>
-      <td>7.8792</td>
-      <td>NaN</td>
-      <td>Q</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>46</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Rogers, Mr. William John</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>S.C./A.4. 23567</td>
-      <td>8.0500</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>47</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Lennon, Mr. Denis</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>1</td>
-      <td>0</td>
-      <td>370371</td>
-      <td>15.5000</td>
-      <td>NaN</td>
-      <td>Q</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>48</td>
-      <td>1</td>
-      <td>3</td>
-      <td>O'Driscoll, Miss. Bridget</td>
-      <td>female</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>14311</td>
-      <td>7.7500</td>
-      <td>NaN</td>
-      <td>Q</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>49</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Samaan, Mr. Youssef</td>
-      <td>male</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>0</td>
-      <td>2662</td>
-      <td>21.6792</td>
-      <td>NaN</td>
-      <td>C</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>50</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Arnold-Franchi, Mrs. Josef (Josefine Franchi)</td>
-      <td>female</td>
-      <td>18.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>349237</td>
-      <td>17.8000</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
+      <td>With Family</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
   </tbody>
 </table>
-</div>
-
-
-
 
 ```python
+#Visualize classes again with childnren included
 sns.countplot(x='Pclass',data=titanic_df,hue='person')
 ```
 
 
 
 
+![png](output_14_1.png)
 
 
-![png](images/output_13_1.png)
-
+Higher amount of children seen in 3rd class and not so many in 1st class
 
 
 ```python
+#Distribuiton of ages on board
 titanic_df['Age'].hist(bins=70)
 ```
 
 
 
 
-​    
-![png](images/output_14_1.png)
-​    
-
-
+![png](output_16_1.png)
+    
 
 ```python
+#Average age on board
 titanic_df['Age'].mean()
 ```
 
@@ -1067,6 +466,7 @@ titanic_df['Age'].mean()
 
 
 ```python
+#Number of male, female, child on board
 titanic_df['person'].value_counts()
 ```
 
@@ -1078,6 +478,8 @@ titanic_df['person'].value_counts()
 
 
 ```python
+#Use FacetGrid to visualize gender by age 
+
 fig = sns.FacetGrid(titanic_df,hue='Sex',aspect=4)
 fig.map(sns.kdeplot,'Age',shade=True)
 
@@ -1090,10 +492,12 @@ fig.add_legend()
 
 
 
-![png](images/output_17_1.png)
+![png](output_19_1.png)
     
 
 ```python
+#Same FacetGrid with children included
+
 fig = sns.FacetGrid(titanic_df,hue='person',aspect=4)
 fig.map(sns.kdeplot,'Age',shade=True)
 
@@ -1106,10 +510,12 @@ fig.add_legend()
 
 
 
-![png](images/output_18_1.png)
+![png](output_20_1.png)
     
 
 ```python
+#FacetGrid for class
+
 fig = sns.FacetGrid(titanic_df,hue='Pclass',aspect=4)
 fig.map(sns.kdeplot,'Age',shade=True)
 
@@ -1123,14 +529,22 @@ fig.add_legend()
 
 
 ​    
-![png](images/output_19_1.png)
+![png](output_21_1.png)
 ​    
 
+
+We see the follwing with the passengers on board:
+1. More males than females
+2. Significanly more males than females in 3rd class
+3. Highest amount of children in 3rd class
+4. Average age of passenger of 29.6
+5. Younger passengers tended to be more lower classes rather than 1st class
 
 ## What deck were the passengers on and how does that relate to their class?
 
 
 ```python
+#Preview dataset again
 titanic_df.head()
 ```
 
@@ -1237,14 +651,14 @@ titanic_df.head()
   </tbody>
 </table>
 
-
-
 ```python
+#Drop the NaN values in cabin column and create new object
 deck = titanic_df['Cabin'].dropna()
 ```
 
 
 ```python
+#Preview deck
 deck.head()
 ```
 
@@ -1258,6 +672,7 @@ deck.head()
 
 
 ```python
+#Get first letter for the deck level
 levels =[]
 
 for level in deck:
@@ -1267,137 +682,23 @@ cabin_df = DataFrame(levels)
 cabin_df.columns=['Cabin']
 cabin_df.sort_values(by='Cabin')
 
+#Visualize number of passengers per deck
 sns.countplot('Cabin',data=cabin_df,palette="winter_d",order=['A','B','C','D','E','F','G'])
 ```
 
 
-![png](images/output_24_2.png)
-    
-
-```python
-cabin_df= cabin_df[cabin_df.Cabin != 'T']
-```
+​    
+![png](output_27_2.png)
+​    
 
 
-```python
-sns.countplot('Cabin',data=cabin_df,palette="summer",order=['A','B','C','D','E','F','G'])
-```
-
-
-![png](images/output_26_2.png)
-
-```python
-titanic_df.head()
-```
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>PassengerId</th>
-      <th>Survived</th>
-      <th>Pclass</th>
-      <th>Name</th>
-      <th>Sex</th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Ticket</th>
-      <th>Fare</th>
-      <th>Cabin</th>
-      <th>Embarked</th>
-      <th>person</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Braund, Mr. Owen Harris</td>
-      <td>male</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>A/5 21171</td>
-      <td>7.2500</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
-      <td>female</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>PC 17599</td>
-      <td>71.2833</td>
-      <td>C85</td>
-      <td>C</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Heikkinen, Miss. Laina</td>
-      <td>female</td>
-      <td>26.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>STON/O2. 3101282</td>
-      <td>7.9250</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
-      <td>female</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>113803</td>
-      <td>53.1000</td>
-      <td>C123</td>
-      <td>S</td>
-      <td>female</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Allen, Mr. William Henry</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>373450</td>
-      <td>8.0500</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>male</td>
-    </tr>
-  </tbody>
-</table>
-
+Most passengers seen in B and C decks.
 
 ## Where did the passengers come from?
 
 
 ```python
+#Visualize where passengers come from
 sns.countplot('Embarked', data=titanic_df, hue='Pclass', order=['C','Q','S'])
 ```
 
@@ -1405,9 +706,13 @@ sns.countplot('Embarked', data=titanic_df, hue='Pclass', order=['C','Q','S'])
 
 
 ​    
-![png](images/output_29_2.png)
+![png](output_30_2.png)
 ​    
 
+
+Most passengers embarked from S which was from Southhampton, with C (Cherbourg) next highest and finally Q (Queenstown) as the lowest 
+
+Intesting to see that queenstown had slmost all 3rd class passengers. Would be interesting to see the economics of all the cities during that time period to see correlation between the two
 
 ## Who was alone and who as with family?
 
@@ -1611,6 +916,7 @@ titanic_df.head(10)
 </table>
 
 ```python
+#Add new column to deteremine if passenger was alone or not
 titanic_df['Alone'] = titanic_df.SibSp + titanic_df.Parch
 ```
 
@@ -1635,47 +941,48 @@ titanic_df['Alone']
 
 
 ```python
+#Classify with family or alone
 titanic_df['Alone'].loc[titanic_df['Alone'] > 0] = 'With Family'
 
 titanic_df['Alone'].loc[titanic_df['Alone'] == 0] = 'Alone'
-
 ```
 
 ```python
+#Verify it worked
 titanic_df['Alone']
 ```
 
 
-```py
-0      With Family
-1      With Family
-2            Alone
-3      With Family
-4            Alone
-          ...     
-886          Alone
-887          Alone
-888    With Family
-889          Alone
-890          Alone
-Name: Alone, Length: 891, dtype: object
-```
+    0      With Family
+    1      With Family
+    2            Alone
+    3      With Family
+    4            Alone
+              ...     
+    886          Alone
+    887          Alone
+    888    With Family
+    889          Alone
+    890          Alone
+    Name: Alone, Length: 891, dtype: object
 
 
 ```python
+#Visualize passenger alone vs with family
 sns.countplot('Alone', data=titanic_df,palette='Blues')
 ```
 
 
-​    
-![png](images/output_36_2.png)
-​    
+![png](output_39_2.png)
 
+
+See more passengers alone rather than with family
 
 ## What factors helped someone survive?
 
 
 ```python
+#Create new column to easily see if passenger survived 
 titanic_df['Survivor'] = titanic_df.Survived.map({0:'no',1:'yes'})
 ```
 
@@ -1700,73 +1007,131 @@ titanic_df['Survivor']
 
 
 ```python
+#Visual of those who survived and those who did not 
 sns.countplot('Survivor',data=titanic_df,palette='Set1')
 ```
 
 
-![png](images/output_40_2.png)
-    
+
+
+​    
+![png](output_44_2.png)
+​    
+
+
+Can clearly see that there were more that died than survived. Lets see if the class of the passenger had an effect on the survival rate.
+
 
 ```python
-sns.factorplot('Pclass','Survived',hue='person',data=titanic_df
+#Visualize those who survived based on class
+sns.factorplot('Pclass','Survived',data=titanic_df)
 ```
 
 
 
 
 ​    
-![png](images/output_41_2.png)
+![png](output_46_2.png)
 ​    
 
 
+Survival rate of those in the 3rd class was significantly less than those in 1st class. There were more men in 3rd class than in first so maybe that was a factor into this lower rate 
+
 
 ```python
+#Visualize those who survived based on gender/child
+sns.factorplot('Pclass','Survived',hue='person',data=titanic_df)
+```
+
+
+
+
+​    
+![png](output_48_2.png)
+​    
+
+
+From this visualization we can see that being a male or being in 3rd class had much lower survival rates.  Regardless of class, being a male in any class lead to dramatic decrease of survival rate compared to the rest of the passengers.  
+
+
+```python
+#Visualize age vs survival rate
 sns.lmplot('Age','Survived',data=titanic_df)
 ```
 
 
-![png](images/output_42_2.png)
-    
+
+
+​    
+![png](output_50_2.png)
+​    
+
+
+See a general trend that the older the passenger was, the less likely they survived.  Lets look at this trend based on the their class and age.
+
 
 ```python
+#Linear plot of age vs survival rate with class separation
 sns.lmplot('Age','Survived',hue='Pclass',data=titanic_df, palette='winter')
 ```
 
 
 
 
-![png](images/output_43_2.png)
-    
+​    
+![png](output_52_2.png)
+​    
+
+
+See that trend stays the same but passengers in lower classes had lower surviving rate as already discovered.
+
 
 ```python
+#Clean up last visualization by creating bins
 generations = [10,20,40,60,80]
 ```
 
 
 ```python
-sns.lmplot('Age','Survived',hue = 'Pclass', data=titanic_df, palette='winter',x_bins = generations)
+#Use bins to clean up visualization
+sns.lmplot('Age','Survived',hue = 'Pclass', data=titanic_df, palette='winter',x_bins = generations).set(xlim=(0,90))
 ```
 
 
-![png](images/output_45_1.png)
-    
+
+
+​    
+![png](output_55_2.png)
+​    
+
+
+See a large standard deviation on older passengers in first class. Lets see if gender plays a role in this...
+
 
 ```python
-sns.lmplot('Age','Survived',hue='Sex',data=titanic_df,palette='winter',x_bins=generations)
+sns.lmplot('Age','Survived',hue='Sex',data=titanic_df,palette='winter',x_bins=generations).set(xlim=(0,90))
 ```
 
 
+
+
 ​    
-![png](images/output_46_1.png)
+![png](output_57_2.png)
 ​    
 
+
+We see that the older males were the lower the survival rate with females being the opposite.  The older the female the higher the survival rate.  
+
+We have seen how the higher class passengers has higher survival rates as well has women and children.
 
 ## Did the deck have an effect on the passenger survival rate?
 
 
 ```python
+#Preview dataset again
 titanic_df.head()
 ```
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1892,11 +1257,13 @@ titanic_df.head()
 
 
 ```python
+#Drop NaN in cabin column and create new dataframe with this info
 cabin_df = titanic_df.dropna(subset=['Cabin'])
 ```
 
 
 ```python
+#Preview new dataframe
 cabin_df.head()
 ```
 
@@ -2021,22 +1388,23 @@ cabin_df.head()
   </tbody>
 </table>
 
-
-
 ```python
+#Make new object with cabin info
 deck = cabin_df['Cabin']
 ```
 
 
 ```python
+#Add new column 'Deck' with letter of deck passenger stayed at
 levels = []
 for level in deck:
     levels.append(level[0])
 
-cabin_df['Deck'] = levels   
+cabin_df['Deck'] = levels    
 ```
 
 ```python
+#Preview new dataframe
 cabin_df.head()
 ```
 
@@ -2170,22 +1538,39 @@ cabin_df.head()
 
 
 ```python
+#Visualize deck vs survival rate
 sns.factorplot('Deck','Survived',data=cabin_df,order=['A','B','C','D','E','F','G'])
 ```
 
 
-![png](images/output_54_2.png)
-    
+
+
+​    
+![png](output_67_2.png)
+​    
+
+
+See no trend in mean of survival rate based on the deck passenger stayed at on titanic. Do see a trend in higher standard deviation of survival rate in lower class deck of "F" and "G" which we have already see that 3rd class passengers were less likely to survive
+
 
 ```python
+#Visualize deck survival rate with gender seperation
 sns.factorplot('Deck','Survived',hue = 'Sex',data=cabin_df,order=['A','B','C','D','E','F','G'])
 ```
 
 
-![png](images/output_55_2.png)
-    
+
+
+​    
+![png](output_69_2.png)
+​    
+
+
+Once again see lower survival rates of males on board.  Interesting to see no males on the "G" deck which may be related to null values in dataset
+
 
 ```python
+#Visualization of survival rate based on deck with class seperation
 sns.factorplot('Deck','Survived',hue = 'Pclass',data=cabin_df,order=['A','B','C','D','E','F','G'])
 ```
 
@@ -2193,36 +1578,70 @@ sns.factorplot('Deck','Survived',hue = 'Pclass',data=cabin_df,order=['A','B','C'
 
 
 ​    
-![png](images/output_56_2.png)
+![png](output_71_2.png)
 ​    
 
+
+Interesting to see the higher survival rate on the "E" deck.  Maybe this was the deck closest to the life boats.
 
 ## Did having a family member increase the odd of surviving?
 
 
 ```python
+#Survival rate of passenger alone vs with family
 sns.factorplot('Alone','Survived',data=titanic_df)
 ```
 
 
-![png](images/output_58_2.png)
-    
+
+
+​    
+![png](output_74_2.png)
+​    
+
+
+Significantly higher survival rate of passengers with family. Wonder if class plays a part into this 
+
 
 ```python
+#Include class in visualization
 sns.factorplot('Alone','Survived',hue = 'Pclass',data=titanic_df)
 ```
 
 
-![png](images/output_59_2.png)
-    
+
+
+​    
+![png](output_76_2.png)
+​    
+
+
+Once again see the lower survival rate of lower class passenger but little changes in trend based on being with family or alone
+
 
 ```python
+#Visualize with gender seperation
 sns.factorplot('Alone','Survived',hue = 'Sex',data=titanic_df)
 ```
 
 
+
+
 ​    
-![png](images/output_60_2.png)
+![png](output_78_2.png)
 ​    
 
 
+Interesting, we see that females traveling alone actually had a higher survival rate than with family but males had a lower.
+
+## Conclusion
+
+We have seen various trends in this data exploration and analysis. We saw that there were more males on board the titanic with majority of passengers embarking from Southhampton.  We also saw that older passengers tended to stay in higher class.
+
+The major trends that stick out in the survivor rate of passengers were:
+
+1. Females and children were more likely to survive than males.
+2. Higher class passengers were more likely to surive than lower class passengers
+3. Older females were more likley to survive than younger females while the oppposite was true for males.
+4. Passengers traveling with family were more likely to survive expect for older females who were more likley with surive if they traveled alone.
+5. Passengers on deck "E" appeared to have the highest survival rate of all the decks
