@@ -166,7 +166,7 @@ sns.countplot(x='Sex', data=titanic_df)
 ```
 
 
-![png](output_7_1.png)
+![png](images/output_7_1.png)
     
 
 ```python
@@ -175,7 +175,7 @@ sns.countplot(x='Sex',data=titanic_df,hue='Pclass')
 ```
 
 
-![png](output_8_1.png)
+![png](images/output_8_1.png)
     
 
 
@@ -188,7 +188,7 @@ sns.countplot(x='Pclass',data=titanic_df,hue='Sex')
 ```
 
 
-![png](output_10_1.png)
+![png](images/output_10_1.png)
     
 
 ```python
@@ -439,7 +439,7 @@ sns.countplot(x='Pclass',data=titanic_df,hue='person')
 
 
 
-![png](output_14_1.png)
+![png](images/output_14_1.png)
 
 
 Higher amount of children seen in 3rd class and not so many in 1st class
@@ -453,7 +453,7 @@ titanic_df['Age'].hist(bins=70)
 
 
 
-![png](output_16_1.png)
+![png](images/output_16_1.png)
     
 
 ```python
@@ -492,7 +492,7 @@ fig.add_legend()
 
 
 
-![png](output_19_1.png)
+![png](images/output_19_1.png)
     
 
 ```python
@@ -510,7 +510,7 @@ fig.add_legend()
 
 
 
-![png](output_20_1.png)
+![png](images/output_20_1.png)
     
 
 ```python
@@ -529,7 +529,7 @@ fig.add_legend()
 
 
 ​    
-![png](output_21_1.png)
+![png](images/output_21_1.png)
 ​    
 
 
@@ -688,7 +688,7 @@ sns.countplot('Cabin',data=cabin_df,palette="winter_d",order=['A','B','C','D','E
 
 
 ​    
-![png](output_27_2.png)
+![png](images/output_27_2.png)
 ​    
 
 
@@ -706,7 +706,7 @@ sns.countplot('Embarked', data=titanic_df, hue='Pclass', order=['C','Q','S'])
 
 
 ​    
-![png](output_30_2.png)
+![png](images/output_30_2.png)
 ​    
 
 
@@ -973,7 +973,7 @@ sns.countplot('Alone', data=titanic_df,palette='Blues')
 ```
 
 
-![png](output_39_2.png)
+![png](images/output_39_2.png)
 
 
 See more passengers alone rather than with family
@@ -1015,7 +1015,7 @@ sns.countplot('Survivor',data=titanic_df,palette='Set1')
 
 
 ​    
-![png](output_44_2.png)
+![png](images/output_44_2.png)
 ​    
 
 
@@ -1031,7 +1031,7 @@ sns.factorplot('Pclass','Survived',data=titanic_df)
 
 
 ​    
-![png](output_46_2.png)
+![png](images/output_46_2.png)
 ​    
 
 
@@ -1047,7 +1047,7 @@ sns.factorplot('Pclass','Survived',hue='person',data=titanic_df)
 
 
 ​    
-![png](output_48_2.png)
+![png](images/output_48_2.png)
 ​    
 
 
@@ -1063,7 +1063,7 @@ sns.lmplot('Age','Survived',data=titanic_df)
 
 
 ​    
-![png](output_50_2.png)
+![png](images/output_50_2.png)
 ​    
 
 
@@ -1079,7 +1079,7 @@ sns.lmplot('Age','Survived',hue='Pclass',data=titanic_df, palette='winter')
 
 
 ​    
-![png](output_52_2.png)
+![png](images/output_52_2.png)
 ​    
 
 
@@ -1101,7 +1101,7 @@ sns.lmplot('Age','Survived',hue = 'Pclass', data=titanic_df, palette='winter',x_
 
 
 ​    
-![png](output_55_2.png)
+![png](images/output_55_2.png)
 ​    
 
 
@@ -1116,7 +1116,7 @@ sns.lmplot('Age','Survived',hue='Sex',data=titanic_df,palette='winter',x_bins=ge
 
 
 ​    
-![png](output_57_2.png)
+![png](images/output_57_2.png)
 ​    
 
 
@@ -1546,7 +1546,7 @@ sns.factorplot('Deck','Survived',data=cabin_df,order=['A','B','C','D','E','F','G
 
 
 ​    
-![png](output_67_2.png)
+![png](images/output_67_2.png)
 ​    
 
 
@@ -1562,7 +1562,7 @@ sns.factorplot('Deck','Survived',hue = 'Sex',data=cabin_df,order=['A','B','C','D
 
 
 ​    
-![png](output_69_2.png)
+![png](images/output_69_2.png)
 ​    
 
 
@@ -1578,7 +1578,7 @@ sns.factorplot('Deck','Survived',hue = 'Pclass',data=cabin_df,order=['A','B','C'
 
 
 ​    
-![png](output_71_2.png)
+![png](images/output_71_2.png)
 ​    
 
 
@@ -1596,7 +1596,7 @@ sns.factorplot('Alone','Survived',data=titanic_df)
 
 
 ​    
-![png](output_74_2.png)
+![png](images/output_74_2.png)
 ​    
 
 
@@ -1612,7 +1612,7 @@ sns.factorplot('Alone','Survived',hue = 'Pclass',data=titanic_df)
 
 
 ​    
-![png](output_76_2.png)
+![png](images/output_76_2.png)
 ​    
 
 
@@ -1628,7 +1628,7 @@ sns.factorplot('Alone','Survived',hue = 'Sex',data=titanic_df)
 
 
 ​    
-![png](output_78_2.png)
+![png](images/output_78_2.png)
 ​    
 
 
